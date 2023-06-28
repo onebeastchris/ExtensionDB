@@ -1,9 +1,10 @@
 plugins {
     id 'java-library'
     id 'java'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
 }
 
-group 'org.geyser.extension.exampleid'
+group 'net.onebeastchris.extension.extensiondb'
 version '1.0.0'
 
 repositories {
@@ -27,5 +28,18 @@ dependencies {
     // Geyser API - needed for all extensions
     compileOnly 'org.geysermc.geyser:api:2.1.1-SNAPSHOT'
 
-    // Include other dependencies here - e.g. for configuration.
+    implementation project(':api')
+    implementation 'org.xerial:sqlite-jdbc:3.40.1.0'
+}
+
+jar {
+    archiveClassifier.set("unshaded")
+}
+
+// Output to build/libs/shadow.jar
+shadowJar {
+    archiveBaseName.set('ExtensionDB')
+    archiveClassifier.set('')
+
+    //relocate('org.sqlite', 'net.onebeastchris.extensiondb.sqlite')
 }
