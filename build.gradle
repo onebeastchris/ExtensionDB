@@ -1,6 +1,7 @@
 plugins {
     id 'java-library'
     id 'java'
+    id 'maven-publish'
     id 'com.github.johnrengelman.shadow' version '8.1.1'
 }
 
@@ -42,4 +43,15 @@ shadowJar {
     archiveClassifier.set('')
 
     //relocate('org.sqlite', 'net.onebeastchris.extensiondb.sqlite')
+}
+
+publishing {
+    repositories {
+        mavenLocal()
+    }
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
 }
