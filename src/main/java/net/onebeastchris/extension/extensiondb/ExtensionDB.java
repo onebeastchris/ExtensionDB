@@ -59,6 +59,7 @@ public class ExtensionDB implements Extension {
         } catch (SQLException exception) {
             logger().error("Error while loading database", exception);
         }
+        logger().info("ExtensionDB loaded!");
     }
 
     public void stop() {
